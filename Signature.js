@@ -16,10 +16,9 @@ const dbConfig = {
 // Folder path to save images
 const outputFolder = 'F:\\KCBL-SIGNATURE\\SignatureImages';
 
-// Path to the image for missing signatures
 const missingSignatureImage = 'C:\\Users\\naeem.ullah\\Desktop\\Signature\\SignatureNotFound.jpg';
 
-// Image dimensions after resizing
+
 const imageWidth = 400; // Change to the desired width
 const imageHeight = 200; // Change to the desired height
 
