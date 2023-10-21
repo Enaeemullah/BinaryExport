@@ -4,6 +4,7 @@ const mysql = require('mysql2/promise'); // Use mysql2 for promises
 const fs = require('fs');
 const path = require('path');
 const sharp = require('sharp');
+const kleur = require('kleur');
 
 // Database connection settings loaded from .env
 const dbConfig = {
@@ -16,9 +17,10 @@ const dbConfig = {
 // Folder path to save images
 const outputFolder = 'F:\\KCBL-SIGNATURE\\SignatureImages';
 
+// Path to the image for missing signatures
 const missingSignatureImage = 'C:\\Users\\naeem.ullah\\Desktop\\Signature\\SignatureNotFound.jpg';
 
-
+// Image dimensions after resizing
 const imageWidth = 400; // Change to the desired width
 const imageHeight = 200; // Change to the desired height
 
@@ -59,7 +61,8 @@ async function signaturePhotos() {
             const imagePath = path.join(outputFolder, `${paddedCustomerID}.jpg`);
 
             await fs.promises.writeFile(imagePath, imageBuffer);
-            console.log('Image saved on SignaturePhotos Folder:', imagePath);
+            console.log(kleur.green('Image saved on SignaturePhotos Folder:'));
+            console.log(kleur.yellow(imagePath));
 
             // Increment the startingCustomerID if there's a gap in Customer_IDs
             if (Customer_ID !== startingCustomerID + index) {
