@@ -21,6 +21,8 @@ const missingSignatureImage = 'C:\\Users\\naeem.ullah\\Desktop\\Signature\\Signa
 const imageWidth = 400; // Change to the desired width
 const imageHeight = 200; // Change to the desired height
 
+// ... Previous code ...
+
 async function signaturePhotos() {
     try {
         const connection = await mysql.createConnection(dbConfig);
@@ -40,6 +42,9 @@ async function signaturePhotos() {
 
             if (signature === null) {
                 imageBuffer = fs.readFileSync(missingSignatureImage);
+
+                // Console the Customer_ID when the signature is missing
+                console.log(kleur.yellow(`Missing signature for Customer_ID: ${Customer_ID} and using the default image: ${missingSignatureImage}`));
             } else {
                 imageBuffer = await sharp(signature)
                     .resize(imageWidth, imageHeight)
